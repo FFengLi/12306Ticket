@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>12306余票查询</title>
+  </head>
+  <style>
+    table,
+    tr,
+    th {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+  </style>
+  <script>
+    window.onload = function () {
+      document.getElementById("search").onclick = function () {
+        alert("按钮被点击了！");
+        // Ajax发送请求
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = callback();// 回调函数
+        request.open("GET",
+        "https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date=2023-05-09&leftTicketDTO.from_station=GLZ&leftTicketDTO.to_station=GZQ&purpose_codes=ADULT");
+        request.send(null);
+
+        function callback(){
+            
+        }
+      };
+    };
+    // const button = document.querySelector("#myButton");
+    // button.addEventListener("click", function () {
+    //   // 在这里添加点击事件的代码
+    //   console.log("按钮被点击了！");
+    // });
+  </script>
+  <body>
+  <form action="/searchTicket" method="post">
+    <label for="fromStation">起始站：</label><input type="text" id="fromStation" name="fromStation">
+    <label for="toStation">到达站：</label><input type="text" id="toStation" name="toStation">
+    <label for="departureDate">出发日期：</label><input type="date" id="departureDate" name="departureDate">
+    <button id="search" type="submit">查询</button>
+  </form>
+
+    <table>
+      <tr>
+        <th>车次</th>
+        <th>出发站<br />到达站</th>
+        <th>出发时间<br />到达时间</th>
+        <th>历时</th>
+        <th>商务座<br />特等座</th>
+      </tr>
+    </table>
+  </body>
+</html>
+<!--keytool -importcert -file E:\_.12306.cn.crt -keystore "D:\Java\jdk1.8.0_351\jre\lib\security\cacerts" -storepass changeit-->
